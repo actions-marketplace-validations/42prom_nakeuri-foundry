@@ -39,7 +39,11 @@ def _run_check(cwd: Path, cmd: list[str], timeout: int) -> dict[str,Any]:
 
 def _prepare_repo(repo: Path, base_commit: str, destination: Path) -> str:
     p=subprocess.run(["git","clone","--no-hardlinks","--quiet",str(repo),str(destination)],text=True,capture_output=True)
-    if p.returncode:raise RuntimeError(p.stderr.strip() or "git clone failed")
+    if p.returncode:
+        if repo.is_dir() and (repo / ".git").exists():
+            shutil.copytree(repo, destination, symlinks=True, ignore_dangling_symlinks=True)
+        else:
+            raise RuntimeError(p.stderr.strip() or "git clone failed")
     p=subprocess.run(["git","checkout","--quiet",base_commit],cwd=destination,text=True,capture_output=True)
     if p.returncode:raise RuntimeError(p.stderr.strip() or "git checkout failed")
     p=subprocess.run(["git","rev-parse","HEAD"],cwd=destination,text=True,capture_output=True)
