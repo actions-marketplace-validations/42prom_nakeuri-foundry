@@ -18,7 +18,7 @@ DEFAULTS: dict[str, dict[str, Any]] = {
 }
 
 def init_genome(root: Path, overwrite: bool=False) -> dict[str, Any]:
-    base=root.resolve()/'.factory'/'genome'; base.mkdir(parents=True,exist_ok=True)
+    root=root.resolve(); base=root/'.factory'/'genome'; base.mkdir(parents=True,exist_ok=True)
     created=[]
     for name in GENOME_FILES:
         p=base/f'{name}.json'

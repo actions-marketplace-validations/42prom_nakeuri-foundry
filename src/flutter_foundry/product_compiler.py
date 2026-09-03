@@ -16,6 +16,6 @@ def compile_product(brief:str)->dict[str,Any]:
     return {"schema":"foundry/product-hypothesis/v1","brief":brief,"actors":actors,"requirements":req,"domain_terms":list(dict.fromkeys(x.lower() for x in nouns[:20])),"status":"hypothesis","rule":"Product inference is not authority. Confirm material product decisions before implementation."}
 
 def write_product_definition(root:Path,brief:str)->dict[str,Any]:
-    init_genome(root);data=compile_product(brief);p=root/'.factory'/'product-definition.json';p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(data,indent=2)+"\n",encoding='utf-8')
+    root=root.resolve();init_genome(root);data=compile_product(brief);p=root/'.factory'/'product-definition.json';p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(data,indent=2)+"\n",encoding='utf-8')
     gp=root/'.factory'/'genome'/'product.json';g=json.loads(gp.read_text());g['vision']=brief;g['actors']=data['actors'];gp.write_text(json.dumps(g,indent=2)+"\n")
     return {"status":"pass","path":str(p),"definition":data}

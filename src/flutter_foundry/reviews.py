@@ -31,6 +31,7 @@ def write_review(
     findings: list[dict[str, Any]] | None = None,
     commit: str | None = None,
 ) -> dict[str, Any]:
+    root = root.resolve()
     if not reviewer or not writer:
         raise ValueError("reviewer and writer identities are required")
     if reviewer == writer:
