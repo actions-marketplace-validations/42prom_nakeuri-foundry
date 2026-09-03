@@ -1,0 +1,27 @@
+{
+  "id": "accessibility-baseline",
+  "version": 1,
+  "title": "Accessibility baseline",
+  "provides": [
+    "ux.accessibility"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "semantic labels for non-text controls",
+    "large text critical flows tested",
+    "tap targets reviewed"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

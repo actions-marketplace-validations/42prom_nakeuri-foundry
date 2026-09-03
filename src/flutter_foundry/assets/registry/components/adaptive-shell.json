@@ -1,0 +1,33 @@
+{
+  "id": "adaptive-shell",
+  "version": 1,
+  "title": "Adaptive app shell and accessibility baseline",
+  "provides": [
+    "ui.shell"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "low",
+  "packages": [
+    "go_router"
+  ],
+  "platforms": [
+    "android",
+    "ios",
+    "web",
+    "desktop"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "navigation has deterministic route ownership",
+    "small and large layouts do not overflow",
+    "interactive controls have semantics where needed",
+    "text scaling does not hide critical actions"
+  ],
+  "verification": [
+    "widget",
+    "golden-optional",
+    "a11y-review"
+  ],
+  "notes": "Keep UI abstractions minimal until reuse is proven."
+}

@@ -1,0 +1,27 @@
+{
+  "id": "localization",
+  "version": 1,
+  "title": "Localization baseline",
+  "provides": [
+    "ux.localization"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "low",
+  "packages": [
+    "flutter_localizations"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "user-facing strings externalized",
+    "fallback locale defined"
+  ],
+  "verification": [
+    "unit"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

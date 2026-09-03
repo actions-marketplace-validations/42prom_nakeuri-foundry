@@ -1,0 +1,25 @@
+{
+  "id": "forms-validation",
+  "version": 1,
+  "title": "Typed form validation",
+  "provides": [
+    "ux.forms.validation"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "low",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "domain validation is reusable outside widgets",
+    "server validation errors map clearly"
+  ],
+  "verification": [
+    "unit"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

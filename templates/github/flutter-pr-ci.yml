@@ -1,0 +1,41 @@
+name: Flutter PR CI
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Configure Foundry
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${{ vars.FOUNDRY_INSTALL_SPEC }}" ]; then
+            echo 'Set repository variable FOUNDRY_INSTALL_SPEC to a pinned PyPI version or immutable VCS commit.' >&2
+            exit 2
+          fi
+          SPEC="${{ vars.FOUNDRY_INSTALL_SPEC }}"
+          if [[ "$SPEC" != *"=="* && ! "$SPEC" =~ @[0-9a-fA-F]{40}([#].*)?$ ]]; then
+            echo 'FOUNDRY_INSTALL_SPEC must be an exact == version or immutable 40-char VCS SHA' >&2; exit 2
+          fi
+          python -m pip install --disable-pip-version-check "$SPEC"
+      - name: Configure Flutter
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${{ vars.FLUTTER_GIT_REF }}" || { echo 'Set FLUTTER_GIT_REF to an immutable Flutter commit SHA.' >&2; exit 2; }
+          [[ "${{ vars.FLUTTER_GIT_REF }}" =~ ^[0-9a-fA-F]{40}$ ]] || { echo 'FLUTTER_GIT_REF must be a full 40-char commit SHA' >&2; exit 2; }
+          git clone --filter=blob:none https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          git -C "$RUNNER_TEMP/flutter" checkout --detach "${{ vars.FLUTTER_GIT_REF }}"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+      - run: flutter --version
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter-foundry --ci --compact gate .

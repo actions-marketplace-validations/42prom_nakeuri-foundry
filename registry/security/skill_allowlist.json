@@ -1,0 +1,59 @@
+{
+  "upstream": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
+  "license_expected": "Apache-2.0",
+  "policy": "Pin an exact reviewed commit before vendoring. Defensive skills are default; red-team skills remain opt-in and sandboxed.",
+  "skills": [
+    {
+      "slug": "detecting-indirect-prompt-injection",
+      "mode": "defensive"
+    },
+    {
+      "slug": "implementing-llm-guardrails-for-security",
+      "mode": "defensive"
+    },
+    {
+      "slug": "performing-threat-modeling-with-owasp-threat-dragon",
+      "mode": "defensive"
+    },
+    {
+      "slug": "implementing-devsecops-security-scanning",
+      "mode": "defensive"
+    },
+    {
+      "slug": "implementing-secret-scanning-with-gitleaks",
+      "mode": "defensive"
+    },
+    {
+      "slug": "detecting-supply-chain-attacks-in-ci-cd",
+      "mode": "defensive"
+    },
+    {
+      "slug": "performing-android-app-static-analysis-with-mobsf",
+      "mode": "defensive"
+    },
+    {
+      "slug": "conducting-mobile-app-penetration-test",
+      "mode": "authorized-red-team"
+    },
+    {
+      "slug": "analyzing-ios-app-security-with-objection",
+      "mode": "authorized-red-team"
+    },
+    {
+      "slug": "testing-android-intents-for-vulnerabilities",
+      "mode": "authorized-red-team"
+    },
+    {
+      "slug": "performing-api-inventory-and-discovery",
+      "mode": "defensive"
+    },
+    {
+      "slug": "testing-for-broken-access-control",
+      "mode": "authorized-red-team"
+    },
+    {
+      "slug": "implementing-code-signing-for-artifacts",
+      "mode": "defensive"
+    }
+  ]
+}

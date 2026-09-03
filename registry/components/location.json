@@ -1,0 +1,29 @@
+{
+  "id": "location",
+  "version": 1,
+  "title": "Location capability",
+  "provides": [
+    "device.location"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [
+    "geolocator"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "minimum necessary precision",
+    "permission denied/revoked handled",
+    "background use explicit"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

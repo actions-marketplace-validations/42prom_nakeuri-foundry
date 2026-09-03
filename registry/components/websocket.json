@@ -1,0 +1,29 @@
+{
+  "id": "websocket",
+  "version": 1,
+  "title": "Realtime transport boundary",
+  "provides": [
+    "network.realtime"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [
+    "socket_io_client"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "auth on connect and reauth defined",
+    "reconnect/backoff bounded",
+    "membership enforced server-side"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

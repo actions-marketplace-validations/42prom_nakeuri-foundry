@@ -1,0 +1,30 @@
+{
+  "id": "biometric-gate",
+  "version": 1,
+  "title": "Biometric local gate",
+  "provides": [
+    "device.biometric"
+  ],
+  "requires": [
+    "storage.secure"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [
+    "local_auth"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "biometric protects local action only",
+    "server authorization remains authoritative"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

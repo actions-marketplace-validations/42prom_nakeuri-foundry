@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+branch="$(git symbolic-ref --short HEAD 2>/dev/null || true)"
+if [[ "$branch" == "main" || "$branch" == "master" ]]; then
+  echo "Nakeuri Flutter Foundry: direct push to $branch is blocked. Use a feature/fix/infra/docs branch and PR." >&2
+  exit 1
+fi

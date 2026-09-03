@@ -1,0 +1,28 @@
+{
+  "id": "update-gate",
+  "version": 1,
+  "title": "Minimum supported version gate",
+  "provides": [
+    "ops.update_gate"
+  ],
+  "requires": [
+    "network.http"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "critical minimum version can block obsolete clients",
+    "store links and offline behavior defined"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

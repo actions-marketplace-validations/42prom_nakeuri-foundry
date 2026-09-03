@@ -1,0 +1,13 @@
+{
+  "artifact_attestation": true,
+  "dependency_review": true,
+  "least_github_permissions": true,
+  "oidc_preferred": true,
+  "persist_checkout_credentials": false,
+  "pin_actions_by_full_sha": true,
+  "pr_only": true,
+  "rollback_plan": true,
+  "sbom": true,
+  "schema": "foundry/delivery/v1",
+  "staged_rollout": true
+}

@@ -1,0 +1,82 @@
+name: Nakeuri Flutter Foundry CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests / Python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Foundry without external runtime extras
+        run: python -m pip install -e . --no-deps
+      - name: Unit and integration suite
+        run: python -m unittest discover -s tests -v
+
+  windows-portability:
+    name: Windows portability / Python 3.12
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Install Foundry without external runtime extras
+        run: python -m pip install -e . --no-deps
+      - name: Unit and integration suite
+        run: python -m unittest discover -s tests -v
+
+  mcp-integration:
+    name: MCP v2 import smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Install Foundry with its declared MCP dependency
+        run: python -m pip install -e .
+      - name: Import MCP server and verify package version binding
+        run: python -c "import flutter_foundry, flutter_foundry.mcp_server as s; assert s.mcp.version == flutter_foundry.__version__"
+
+  assurance:
+    name: Repository assurance
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: [test, windows-portability, mcp-integration]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e . --no-deps
+      - run: python scripts/self_audit.py
+      - run: python scripts/check_repo_policy.py
+      - run: python scripts/check_actions_pinned.py
+      - run: nakeuri adversarial-self-test
+      - run: nakeuri benchmark-v3-validate evals/golden_tasks/v3_target_500.jsonl --minimum 500
+      - run: nakeuri target-10 .

@@ -1,0 +1,28 @@
+{
+  "id": "deep-links",
+  "version": 1,
+  "title": "Deep link routing",
+  "provides": [
+    "navigation.deeplink"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [
+    "go_router"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "unknown links fail safely",
+    "protected routes respect auth guard"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

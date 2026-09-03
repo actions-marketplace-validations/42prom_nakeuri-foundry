@@ -1,0 +1,28 @@
+{
+  "id": "camera",
+  "version": 1,
+  "title": "Camera capability",
+  "provides": [
+    "device.camera"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [
+    "image_picker"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "permission denied flow works",
+    "captured data lifetime explicit"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

@@ -1,0 +1,36 @@
+{
+  "id": "network-dio",
+  "version": 1,
+  "title": "Dio networking boundary",
+  "provides": [
+    "network.http"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [
+    "dio"
+  ],
+  "platforms": [
+    "android",
+    "ios",
+    "web",
+    "desktop"
+  ],
+  "security_tags": [
+    "transport",
+    "api"
+  ],
+  "acceptance": [
+    "one configured HTTP client boundary",
+    "timeouts are explicit",
+    "errors are mapped before reaching UI",
+    "production endpoints use HTTPS"
+  ],
+  "verification": [
+    "unit",
+    "analyze",
+    "security-static"
+  ],
+  "notes": "Default provider can be overridden by PROJECT_RULES.md."
+}

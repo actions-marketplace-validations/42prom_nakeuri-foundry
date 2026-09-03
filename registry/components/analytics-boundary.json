@@ -1,0 +1,26 @@
+{
+  "id": "analytics-boundary",
+  "version": 1,
+  "title": "Privacy-aware analytics boundary",
+  "provides": [
+    "observability.analytics"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "PII excluded by default",
+    "consent policy enforced when required"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

@@ -1,0 +1,15 @@
+{
+  "artifact_hash_required_when_artifact_present": true,
+  "booleans_are_evidence": false,
+  "git_bound": true,
+  "required_for_score_100": [
+    "acceptance",
+    "performance",
+    "accessibility",
+    "runtime",
+    "supply_chain",
+    "operability",
+    "cost"
+  ],
+  "schema": "foundry/evidence-policy/v1"
+}

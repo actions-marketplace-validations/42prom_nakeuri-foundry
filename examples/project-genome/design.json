@@ -1,0 +1,7 @@
+{
+  "schema": "foundry/genome/design/v1",
+  "brand": "example-only",
+  "tokens": {"spacing": {"xs": 4, "sm": 8, "md": 16, "lg": 24, "xl": 32}, "radius": {"sm": 8, "md": 12, "lg": 20}},
+  "canonical_components": {"primary_button": "AppPrimaryButton", "card": "AppCard", "loading": "AppSkeleton", "error": "AppErrorState", "empty": "AppEmptyState"},
+  "forbid_raw_styles": true
+}

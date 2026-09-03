@@ -1,0 +1,29 @@
+{
+  "id": "api-contracts",
+  "version": 1,
+  "title": "Typed API contract boundary",
+  "provides": [
+    "api.contracts"
+  ],
+  "requires": [
+    "network.http"
+  ],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "request/response schemas versioned",
+    "breaking changes detectable",
+    "typed error contract"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

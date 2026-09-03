@@ -1,0 +1,55 @@
+name: Release Gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+jobs:
+  release-assurance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: production
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Configure Foundry
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${{ vars.FOUNDRY_INSTALL_SPEC }}" || { echo 'FOUNDRY_INSTALL_SPEC is required' >&2; exit 2; }
+          SPEC="${{ vars.FOUNDRY_INSTALL_SPEC }}"
+          if [[ "$SPEC" != *"=="* && ! "$SPEC" =~ @[0-9a-fA-F]{40}([#].*)?$ ]]; then
+            echo 'FOUNDRY_INSTALL_SPEC must be an exact == version or immutable 40-char VCS SHA' >&2; exit 2
+          fi
+          python -m pip install --disable-pip-version-check "$SPEC"
+      - name: Configure Flutter
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${{ vars.FLUTTER_GIT_REF }}" || { echo 'FLUTTER_GIT_REF immutable SHA is required' >&2; exit 2; }
+          [[ "${{ vars.FLUTTER_GIT_REF }}" =~ ^[0-9a-fA-F]{40}$ ]] || { echo 'FLUTTER_GIT_REF must be a full 40-char commit SHA' >&2; exit 2; }
+          git clone --filter=blob:none https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          git -C "$RUNNER_TEMP/flutter" checkout --detach "${{ vars.FLUTTER_GIT_REF }}"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+      - run: flutter pub get
+      - run: flutter-foundry --ci --compact production-check .
+      - name: Release verification (explicit environment gaps allowed; failures block)
+        run: flutter-foundry --ci --allow-gaps --compact verify . --profile release
+      - name: Generate CycloneDX SBOM
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart pub deps --json > dart-deps.json
+          flutter-foundry sbom-from-pub dart-deps.json --output sbom.cdx.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-assurance
+          path: |
+            build/app/outputs/bundle/release/app-release.aab
+            sbom.cdx.json
+      - uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4.1.1
+        with:
+          subject-path: build/app/outputs/bundle/release/app-release.aab
+          sbom-path: sbom.cdx.json

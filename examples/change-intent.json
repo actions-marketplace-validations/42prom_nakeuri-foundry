@@ -1,0 +1,1 @@
+{"schema":"foundry/change-intent/v1","task":"Add biometric re-authentication before revealing sensitive profile data","base":"origin/main","allowed_globs":["lib/features/profile/**","lib/core/security/**","test/**"],"must_not_change_globs":["lib/features/payments/**",".factory/genome/**"]}

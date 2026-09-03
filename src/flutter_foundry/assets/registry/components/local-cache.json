@@ -1,0 +1,28 @@
+{
+  "id": "local-cache",
+  "version": 1,
+  "title": "Local cache boundary",
+  "provides": [
+    "storage.cache"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [
+    "hive"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "cache is not source of authorization truth",
+    "cache invalidation explicit"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

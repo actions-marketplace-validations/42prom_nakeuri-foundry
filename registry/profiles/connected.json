@@ -1,0 +1,9 @@
+{
+  "id": "connected",
+  "components": [
+    "adaptive-shell",
+    "network-dio",
+    "observability"
+  ],
+  "description": "Connected production app baseline"
+}

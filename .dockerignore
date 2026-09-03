@@ -1,0 +1,15 @@
+.git
+.factory
+build
+dist
+*.egg-info
+__pycache__
+*.pyc
+.venv
+venv
+node_modules
+.dart_tool
+.next
+target
+bin
+obj

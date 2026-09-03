@@ -1,0 +1,1 @@
+{"id":"INV-AUTH-001","owner":"auth","statement":"An expired access token is never treated as an authenticated session without a successful refresh.","severity":"high","tests":["test/features/auth/auth_session_test.dart"]}

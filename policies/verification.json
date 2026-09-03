@@ -1,0 +1,22 @@
+{
+  "fast": [
+    "dart_format",
+    "flutter_analyze",
+    "targeted_tests",
+    "foundry_security"
+  ],
+  "standard": [
+    "dart_format",
+    "flutter_analyze",
+    "flutter_test",
+    "foundry_security"
+  ],
+  "release": [
+    "dart_format",
+    "flutter_analyze",
+    "flutter_test",
+    "foundry_security",
+    "android_release_build",
+    "ios_release_build_if_available"
+  ]
+}

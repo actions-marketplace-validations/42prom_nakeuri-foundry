@@ -1,0 +1,22 @@
+services:
+  foundry:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        NAKEURI_BASE_IMAGE: ${NAKEURI_BASE_IMAGE:?Set a digest-pinned image, e.g. python:3.12-slim@sha256:...}
+    read_only: true
+    init: true
+    user: "65532:65532"
+    cap_drop: ["ALL"]
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 512
+    mem_limit: 4g
+    cpus: 2.0
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,noexec,size=512m
+    network_mode: none
+    volumes:
+      - ${NAKEURI_WORKSPACE:-.}:/workspace:rw
+    working_dir: /workspace

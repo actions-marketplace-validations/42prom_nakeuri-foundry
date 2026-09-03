@@ -1,0 +1,21 @@
+{
+  "blocking": {
+    "architecture_high": true,
+    "duplicate_capability": true,
+    "failed_invariant": true,
+    "missing_proof": true,
+    "security_high": true
+  },
+  "limits": {
+    "cyclomatic_complexity": 15,
+    "file_lines": 500,
+    "function_lines": 80,
+    "widget_nesting": 4
+  },
+  "schema": "foundry/quality/v1",
+  "simplify_on": [
+    "speculative-base-abstraction",
+    "network-in-presentation",
+    "single-use-orchestration-abstraction"
+  ]
+}

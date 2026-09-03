@@ -1,0 +1,28 @@
+{
+  "id": "pagination",
+  "version": 1,
+  "title": "Pagination contract",
+  "provides": [
+    "data.pagination"
+  ],
+  "requires": [
+    "network.http"
+  ],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "duplicate pages prevented",
+    "refresh and terminal state explicit"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

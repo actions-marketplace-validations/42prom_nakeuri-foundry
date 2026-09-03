@@ -1,0 +1,37 @@
+{
+  "id": "auth-session",
+  "version": 1,
+  "title": "Authentication and session lifecycle",
+  "provides": [
+    "auth.session"
+  ],
+  "requires": [
+    "network.http",
+    "storage.secure"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios",
+    "web"
+  ],
+  "security_tags": [
+    "auth",
+    "token",
+    "rbac"
+  ],
+  "acceptance": [
+    "login success/failure/cancel paths are explicit",
+    "expired sessions recover or fail safely",
+    "logout revokes local session state",
+    "authorization is enforced server-side"
+  ],
+  "verification": [
+    "unit",
+    "integration",
+    "security-review"
+  ],
+  "notes": "Implementation is app-specific; capsule defines contract, not pasted auth code."
+}

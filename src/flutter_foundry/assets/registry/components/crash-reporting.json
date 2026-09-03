@@ -1,0 +1,27 @@
+{
+  "id": "crash-reporting",
+  "version": 1,
+  "title": "Crash reporting boundary",
+  "provides": [
+    "observability.crash"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "release crashes captured",
+    "PII scrubbed",
+    "environment/version tags included"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

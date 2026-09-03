@@ -1,0 +1,31 @@
+{
+  "id": "in-app-purchase",
+  "version": 1,
+  "title": "Store billing boundary",
+  "provides": [
+    "payments.store"
+  ],
+  "requires": [
+    "auth.session"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [
+    "in_app_purchase"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "purchase restore path",
+    "server-side entitlement validation",
+    "duplicate purchase/webhook idempotency"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

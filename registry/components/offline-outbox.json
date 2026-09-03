@@ -1,0 +1,34 @@
+{
+  "id": "offline-outbox",
+  "version": 1,
+  "title": "Offline mutation outbox",
+  "provides": [
+    "offline.mutations"
+  ],
+  "requires": [
+    "network.http"
+  ],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios",
+    "desktop"
+  ],
+  "security_tags": [
+    "integrity",
+    "sync"
+  ],
+  "acceptance": [
+    "mutations are durable before network send",
+    "retries are bounded",
+    "duplicate delivery is safe or idempotent",
+    "conflicts surface deterministically"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Prefer this only when the product truly needs offline mutation support."
+}

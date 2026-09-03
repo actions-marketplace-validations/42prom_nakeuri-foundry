@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nakeuri-flutter-foundry"
+version = "5.0.0a1"
+description = "Nakeuri Engineering Foundry core with a flagship Flutter profile: CLI-first, polyglot, evidence-first autonomous engineering control plane"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "Nakeuri Flutter Foundry contributors"}]
+keywords = ["flutter", "dart", "nextjs", "python", "dotnet", "ai-agents", "mcp", "docker", "software-engineering", "ci-cd"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Build Tools",
+]
+dependencies = ["mcp[cli]>=2,<3"]
+
+[project.optional-dependencies]
+openhands = [
+  "openhands-sdk>=1.44.1,<2; python_version >= '3.12'",
+  "openhands-tools>=1.44.1,<2; python_version >= '3.12'",
+]
+antigravity = [
+  "google-antigravity>=0.1.15,<0.2",
+]
+
+[project.scripts]
+flutter-foundry = "flutter_foundry.cli:main"
+nakeuri-foundry = "flutter_foundry.cli:main"
+nakeuri = "flutter_foundry.cli:main"
+flutter-foundry-mcp = "flutter_foundry.mcp_server:main"
+flutter-foundry-hook = "flutter_foundry.hook:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.setuptools.package-data]
+flutter_foundry = ["assets/**/*"]

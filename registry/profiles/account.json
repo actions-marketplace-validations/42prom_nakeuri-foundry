@@ -1,0 +1,11 @@
+{
+  "id": "account",
+  "components": [
+    "adaptive-shell",
+    "network-dio",
+    "secure-storage",
+    "auth-session",
+    "observability"
+  ],
+  "description": "Account-based app baseline"
+}

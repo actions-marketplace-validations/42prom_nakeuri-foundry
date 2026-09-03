@@ -1,0 +1,52 @@
+{
+  "high_keywords": [
+    "auth",
+    "oauth",
+    "token",
+    "payment",
+    "billing",
+    "stripe",
+    "iap",
+    "storekit",
+    "play billing",
+    "tenant",
+    "permission",
+    "biometric",
+    "encryption",
+    "keychain",
+    "keystore",
+    "migration",
+    "schema",
+    "delete account",
+    "rbac",
+    "idor",
+    "secret",
+    "signing"
+  ],
+  "medium_keywords": [
+    "api",
+    "network",
+    "offline",
+    "sync",
+    "notification",
+    "deep link",
+    "database",
+    "storage",
+    "navigation",
+    "background",
+    "websocket"
+  ],
+  "thresholds": {
+    "medium_score": 3,
+    "high_score": 7,
+    "release_score": 12
+  },
+  "call_sites": {
+    "safe_max": 3,
+    "caution_max": 10
+  },
+  "files": {
+    "low_max": 2,
+    "medium_max": 5
+  }
+}

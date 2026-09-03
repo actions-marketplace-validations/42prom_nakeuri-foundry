@@ -1,0 +1,29 @@
+{
+  "id": "file-upload",
+  "version": 1,
+  "title": "File upload boundary",
+  "provides": [
+    "data.upload"
+  ],
+  "requires": [
+    "network.http"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "type/size validation",
+    "server-side content checks",
+    "upload retry semantics explicit"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

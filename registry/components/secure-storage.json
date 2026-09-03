@@ -1,0 +1,33 @@
+{
+  "id": "secure-storage",
+  "version": 1,
+  "title": "Secure local secret storage",
+  "provides": [
+    "storage.secure"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [
+    "flutter_secure_storage"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [
+    "secrets",
+    "storage"
+  ],
+  "acceptance": [
+    "session secrets are not persisted in plaintext",
+    "logout removes session material",
+    "secret values are not logged"
+  ],
+  "verification": [
+    "unit",
+    "platform-review",
+    "security-static"
+  ],
+  "notes": "High-risk because misuse can expose long-lived credentials."
+}

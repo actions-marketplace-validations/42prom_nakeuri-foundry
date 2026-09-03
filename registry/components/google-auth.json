@@ -1,0 +1,31 @@
+{
+  "id": "google-auth",
+  "version": 1,
+  "title": "Google authentication",
+  "provides": [
+    "auth.google"
+  ],
+  "requires": [
+    "auth.session"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [
+    "google_sign_in"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "login cancel is safe",
+    "server verifies identity credential",
+    "account linking is explicit"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

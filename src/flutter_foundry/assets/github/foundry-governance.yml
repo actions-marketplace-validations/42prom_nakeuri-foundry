@@ -1,0 +1,26 @@
+name: Foundry Governance
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned Foundry
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${{ vars.FOUNDRY_INSTALL_SPEC }}" || { echo 'Set FOUNDRY_INSTALL_SPEC to an exact version or immutable VCS SHA.' >&2; exit 2; }
+          SPEC="${{ vars.FOUNDRY_INSTALL_SPEC }}"
+          if [[ "$SPEC" != *"=="* && ! "$SPEC" =~ @[0-9a-fA-F]{40}([#].*)?$ ]]; then
+            echo 'FOUNDRY_INSTALL_SPEC must be exact/pinned.' >&2; exit 2
+          fi
+          python -m pip install --disable-pip-version-check "$SPEC"
+      - run: nakeuri --ci --compact architecture .
+      - run: nakeuri --ci --compact security .
+      - run: nakeuri --ci --compact contracts-check .

@@ -1,0 +1,12 @@
+{
+  "id": "offline-account",
+  "components": [
+    "adaptive-shell",
+    "network-dio",
+    "secure-storage",
+    "auth-session",
+    "offline-outbox",
+    "observability"
+  ],
+  "description": "Account app with offline mutation support"
+}

@@ -1,0 +1,42 @@
+{
+  "high": {
+    "human_merge": true,
+    "max_agent_seconds": 5400,
+    "max_cost_usd": 8.0,
+    "max_repair_loops": 3,
+    "max_tokens": 2000000,
+    "planner": "flagship",
+    "reviewer_primary": "flagship",
+    "reviewer_secondary": "independent",
+    "worker": "balanced"
+  },
+  "low": {
+    "max_agent_seconds": 900,
+    "max_cost_usd": 0.5,
+    "max_repair_loops": 2,
+    "max_tokens": 250000,
+    "planner": "none",
+    "reviewer": "economy",
+    "worker": "economy"
+  },
+  "medium": {
+    "max_agent_seconds": 2400,
+    "max_cost_usd": 2.0,
+    "max_repair_loops": 3,
+    "max_tokens": 750000,
+    "planner": "balanced",
+    "reviewer": "balanced",
+    "worker": "balanced"
+  },
+  "release": {
+    "full_verification": true,
+    "human_merge": true,
+    "max_agent_seconds": 7200,
+    "max_cost_usd": 15.0,
+    "max_tokens": 3500000,
+    "planner": "flagship",
+    "reviewer_primary": "flagship",
+    "reviewer_secondary": "independent",
+    "worker": "balanced"
+  }
+}

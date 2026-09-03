@@ -1,0 +1,33 @@
+{
+  "id": "observability",
+  "version": 1,
+  "title": "Production-safe observability",
+  "provides": [
+    "ops.observability"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios",
+    "web",
+    "desktop"
+  ],
+  "security_tags": [
+    "logging",
+    "privacy"
+  ],
+  "acceptance": [
+    "release logs exclude secrets/PII",
+    "crashes can be correlated with release version",
+    "debug-only diagnostics are not exposed in production"
+  ],
+  "verification": [
+    "unit",
+    "security-static",
+    "release-review"
+  ],
+  "notes": "Vendor is intentionally unspecified."
+}

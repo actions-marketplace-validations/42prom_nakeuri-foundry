@@ -1,0 +1,28 @@
+{
+  "id": "feature-flags",
+  "version": 1,
+  "title": "Feature flag and kill-switch boundary",
+  "provides": [
+    "ops.flags"
+  ],
+  "requires": [
+    "network.http"
+  ],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "defaults are safe",
+    "critical kill switch can disable risky feature"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

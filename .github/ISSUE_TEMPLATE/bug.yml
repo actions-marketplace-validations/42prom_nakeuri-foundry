@@ -1,0 +1,29 @@
+name: Bug report
+description: Report a reproducible Nakeuri Flutter Foundry defect
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Minimal steps, command, project shape, and observed output.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python, Flutter, Dart, Git, Antigravity/MCP versions when relevant.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Logs, failing test, proof bundle reference, or other deterministic evidence.

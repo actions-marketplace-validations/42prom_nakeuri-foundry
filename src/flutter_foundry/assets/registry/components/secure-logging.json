@@ -1,0 +1,27 @@
+{
+  "id": "secure-logging",
+  "version": 1,
+  "title": "Structured safe logging",
+  "provides": [
+    "observability.logging"
+  ],
+  "requires": [],
+  "conflicts": [],
+  "risk": "medium",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "tokens/passwords/PII redacted",
+    "release log level bounded",
+    "request correlation supported"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

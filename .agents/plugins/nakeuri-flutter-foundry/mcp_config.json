@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "dart": {
+      "command": "dart",
+      "args": [
+        "mcp-server"
+      ]
+    },
+    "nakeuri-flutter-foundry": {
+      "command": "flutter-foundry-mcp",
+      "env": {
+        "FLUTTER_FOUNDRY_WORKSPACE": "."
+      }
+    }
+  }
+}

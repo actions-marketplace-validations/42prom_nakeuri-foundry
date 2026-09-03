@@ -1,0 +1,19 @@
+{
+  "core": "Nakeuri Engineering Foundry Core",
+  "default_profile": "flutter-flagship",
+  "name": "Nakeuri Flutter Foundry",
+  "principles": [
+    "evidence-over-memory",
+    "deterministic-before-llm",
+    "one-control-plane-many-adapters",
+    "official-framework-intelligence-first",
+    "strongest-proven-practice-over-newest",
+    "risk-adaptive-cost-and-isolation",
+    "zero-trust-agents-and-content",
+    "least-privilege",
+    "component-contracts",
+    "append-only-learning"
+  ],
+  "schema": "nakeuri-foundry/factory/v3",
+  "version": "5.0.0a1"
+}

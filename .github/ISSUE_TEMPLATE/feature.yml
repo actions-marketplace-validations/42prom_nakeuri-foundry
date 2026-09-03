@@ -1,0 +1,24 @@
+name: Improvement proposal
+description: Propose a focused capability or engineering improvement
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What concrete problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / use cases
+      description: What current use cases justify the added complexity?
+    validations:
+      required: true
+  - type: textarea
+    id: minimal
+    attributes:
+      label: Smallest acceptable solution
+      description: Prefer the minimum implementation that proves value.

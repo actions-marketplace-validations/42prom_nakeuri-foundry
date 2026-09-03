@@ -1,0 +1,44 @@
+name: Flutter Android E2E
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  android-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Configure Flutter
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${{ vars.FLUTTER_GIT_REF }}" || { echo 'FLUTTER_GIT_REF immutable SHA is required' >&2; exit 2; }
+          [[ "${{ vars.FLUTTER_GIT_REF }}" =~ ^[0-9a-fA-F]{40}$ ]] || { echo 'FLUTTER_GIT_REF must be a full 40-char commit SHA' >&2; exit 2; }
+          git clone --filter=blob:none https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          git -C "$RUNNER_TEMP/flutter" checkout --detach "${{ vars.FLUTTER_GIT_REF }}"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+      - name: Create Android emulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platform-tools" "emulator" "platforms;android-35" "system-images;android-35;google_apis;x86_64"
+          echo no | avdmanager create avd -n foundry_api35 -k "system-images;android-35;google_apis;x86_64" --force
+          nohup emulator -avd foundry_api35 -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          adb wait-for-device
+          timeout 300 bash -c 'until [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d "\r")" = "1" ]; do sleep 2; done'
+          adb shell settings put global window_animation_scale 0
+          adb shell settings put global transition_animation_scale 0
+          adb shell settings put global animator_duration_scale 0
+      - run: flutter pub get
+      - name: Run integration tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d integration_test || { echo 'integration_test/ is required for E2E assurance' >&2; exit 2; }
+          flutter test integration_test -d emulator-5554

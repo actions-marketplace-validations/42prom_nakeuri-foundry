@@ -1,0 +1,38 @@
+{
+  "id": "payments-boundary",
+  "version": 1,
+  "title": "Payment lifecycle boundary",
+  "provides": [
+    "payments.core"
+  ],
+  "requires": [
+    "network.http",
+    "storage.secure"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [],
+  "platforms": [
+    "android",
+    "ios",
+    "web"
+  ],
+  "security_tags": [
+    "payments",
+    "secrets",
+    "store-policy"
+  ],
+  "acceptance": [
+    "payment state is authoritative on backend/provider",
+    "idempotency is defined",
+    "failure/retry/recovery journeys are explicit",
+    "store-billing classification is decided before mobile release"
+  ],
+  "verification": [
+    "unit",
+    "integration",
+    "security-review",
+    "store-review"
+  ],
+  "notes": "Provider and billing route depend on product/legal classification."
+}

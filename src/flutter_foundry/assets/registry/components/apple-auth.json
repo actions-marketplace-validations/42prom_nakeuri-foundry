@@ -1,0 +1,31 @@
+{
+  "id": "apple-auth",
+  "version": 1,
+  "title": "Sign in with Apple",
+  "provides": [
+    "auth.apple"
+  ],
+  "requires": [
+    "auth.session"
+  ],
+  "conflicts": [],
+  "risk": "high",
+  "packages": [
+    "sign_in_with_apple"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "security_tags": [],
+  "acceptance": [
+    "nonce/state validated",
+    "cancel is safe",
+    "credential changes handled"
+  ],
+  "verification": [
+    "unit",
+    "integration"
+  ],
+  "notes": "Contract capsule. Implementation remains project-specific and must satisfy Project Genome."
+}

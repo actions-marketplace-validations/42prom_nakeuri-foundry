@@ -1,0 +1,7 @@
+{
+  "id": "minimal",
+  "components": [
+    "adaptive-shell"
+  ],
+  "description": "Small offline/simple app baseline"
+}
