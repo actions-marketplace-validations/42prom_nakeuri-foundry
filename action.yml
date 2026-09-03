@@ -1,6 +1,9 @@
 name: 'Nakeuri Foundry Quality Gate'
 description: 'High-assurance AI engineering control plane, contract verification, and gatekeeper for Flutter & polyglot repositories.'
 author: 'Nakeuri Flutter Foundry contributors'
+branding:
+  icon: 'shield'
+  color: 'blue'
 inputs:
   task:
     description: 'Nakeuri command to run (e.g. contracts-check, platforms, doctor, standards-status, target-10)'
