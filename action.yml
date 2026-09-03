@@ -1,0 +1,30 @@
+name: 'Nakeuri Foundry Quality Gate'
+description: 'High-assurance AI engineering control plane, contract verification, and gatekeeper for Flutter & polyglot repositories.'
+author: 'Nakeuri Flutter Foundry contributors'
+inputs:
+  task:
+    description: 'Nakeuri command to run (e.g. contracts-check, platforms, doctor, standards-status, target-10)'
+    required: false
+    default: 'contracts-check'
+  path:
+    description: 'Target repository path'
+    required: false
+    default: '.'
+  python-version:
+    description: 'Python version to execute with'
+    required: false
+    default: '3.12'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Run Nakeuri Foundry Gate
+      shell: bash
+      env:
+        PYTHONPATH: ${{ github.action_path }}/src
+      run: |
+        python -m flutter_foundry.cli ${{ inputs.task }} ${{ inputs.path }}

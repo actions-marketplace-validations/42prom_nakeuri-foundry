@@ -212,6 +212,7 @@ def parser():
  q=sp.add_parser('empirical-benchmark');q.add_argument('benchmark');q.add_argument('--profiles',required=True,help='JSON file with [{name,command,env?}]')
  q=sp.add_parser('v5-score')
  q=sp.add_parser('v5-stress-suite')
+ q=sp.add_parser('heal');q.add_argument('project',nargs='?',default='.');q.add_argument('--check-only',action='store_true')
  return p
 
 def main():
@@ -256,6 +257,9 @@ def main():
   raw=json.loads(Path(a.profiles).read_text(encoding='utf-8')); rows=raw.get('profiles',raw) if isinstance(raw,dict) else raw; profiles=[BenchmarkProfile(str(x['name']),tuple(str(c) for c in x['command']),{str(k):str(v) for k,v in x.get('env',{}).items()} or None) for x in rows];emit(compare_profiles(profiles,load_benchmark(Path(a.benchmark))));return
  if a.cmd=='v5-score':emit(v5_flagship_score(Path(__file__).resolve().parent));return
  if a.cmd=='v5-stress-suite':emit(v5_stress_suite());return
+ if a.cmd=='heal':
+  from .remediation import scan_and_remediate
+  emit(scan_and_remediate(Path(a.project),apply=not a.check_only));return
  if a.cmd=='target-10':emit(target10_gate(Path(a.project),run_reproducible_build=a.reproducible_build,probe_docker=a.probe_docker,require_certification=a.require_certification));return
  if a.cmd=='source-fingerprint':emit({'status':'pass',**repository_fingerprint(Path(a.project))});return
  if a.cmd=='polyglot-smoke':emit(run_polyglot_smoke());return

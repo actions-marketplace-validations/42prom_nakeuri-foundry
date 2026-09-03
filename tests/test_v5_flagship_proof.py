@@ -86,6 +86,28 @@ class V5FlagshipTests(unittest.TestCase):
         comparison={"summary":{"base":{"acceptance_rate":0.5,"total_cost_usd":2,"total_tokens":100,"median_duration_ms":1000},"full":{"acceptance_rate":0.75,"total_cost_usd":1.8,"total_tokens":90,"median_duration_ms":900}}}
         out=ablation_report(comparison,'base');self.assertEqual(out['profiles']['full']['acceptance_delta_pp'],25.0);self.assertLess(out['profiles']['full']['cost_delta_usd'],0)
 
+    def test_foundry_cache_and_parallel_map(self):
+        from flutter_foundry.cache import FoundryCache, parallel_map
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            cache = FoundryCache(root)
+            self.assertIsNone(cache.get('test', root, 'fp1'))
+            cache.set('test', root, 'fp1', {'cached': True})
+            self.assertEqual(cache.get('test', root, 'fp1'), {'cached': True})
+            self.assertIsNone(cache.get('test', root, 'fp2'))
+            res = parallel_map(lambda x: x * 2, [1, 2, 3])
+            self.assertEqual(res, [2, 4, 6])
+
+    def test_surgical_auto_remediation(self):
+        from flutter_foundry.remediation import scan_and_remediate
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / '.gitignore').write_text('node_modules\n', encoding='utf-8')
+            res = scan_and_remediate(root, apply=True)
+            self.assertEqual(res['status'], 'remediated')
+            self.assertTrue((root / '.foundry' / 'evidence').is_dir())
+            self.assertIn('.nakeuri/cache', (root / '.gitignore').read_text(encoding='utf-8'))
+
     def test_v5_score_is_full_implementation_coverage(self):
         import flutter_foundry
         package=Path(flutter_foundry.__file__).resolve().parent
